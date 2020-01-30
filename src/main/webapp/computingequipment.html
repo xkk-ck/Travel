@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>线代</title>
+		<link rel="stylesheet" type="text/css" href="css/ang.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+		<!--导入jquery-->
+		<script src="js/jquery-3.3.1.js"></script>
+		<script>
+
+			$(function () {
+				//1.给登录按钮绑定单击事件
+				$("#btn_inputA").click(function () {
+
+					//2.发送ajax请求，提交表单数据
+					$.post("computeServlet",$("#MatrixForm").serialize(),function (data) {
+						//data : {flag:false,errorMsg:''}
+						if(data.flag!=null){
+							//保存失败
+							$("#errorMsg").html(data.errorMsg);
+						}
+					});
+				});
+				$("#btn_inputB").click(function () {
+					//2.发送ajax请求，提交表单数据
+					$.post("computeServlet",$("#B").serialize(),function (data) {
+						//data : {flag:false,errorMsg:''}
+						if(!data.flag){
+							//保存失败
+							$("#errorMsg").html(data.errorMsg);
+						}
+					});
+				});
+			});
+
+
+			//3.处理响应结果
+
+
+
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="left top">
+				<b>标题</b><div class="threadlike">	</div>
+				<p>具体事项</p>
+				<div id="errorMsg" class="alert alert-danger" ></div>
+			</div>
+
+<!--			<form id="Matrix" action="" method="post" accept-charset="utf-8">-->
+
+			<div class="left foot">
+				<b>标题</b><div class="threadlike"></div>
+				<form id="MatrixForm" action="" method="post" accept-charset="utf-8">
+					输入矩阵的行与列：
+					<input style="height:30px; width:30px" id="row" name="row"  type="text">
+					<input style="height:30px; width:30px" id="col" name="col"  type="text">
+					<br /> <br />
+					<div class="leftChild2" style="border: 0px;"><a>矩阵A</a></div>
+					<div class="leftChild2" style="height: 200px;"><textarea name="Data" class="form-control" type= "text" rows="14"></textarea></div>
+				</form>
+				<form id="MatrixForm2" action="" method="post" accept-charset="utf-8">
+					<br /> <br />
+					<div class="rightChild1"><textarea class="form-control" rows="29"></textarea></div>
+
+					<div class="leftChild2" style="border: 0px;"><a>矩阵</a></div>
+					<div class="leftChild2" style="height: 200px;"><textarea ID="B" class="form-control" type= "text" rows="14" ></textarea></div>
+				</form>
+
+<!--				输入矩阵的行与列：-->
+<!--				<input style="height:30px; width:30px" id="row" name="row" value="${row }" type="text">-->
+<!--				<input style="height:30px; width:30px" id="col" name="col" value="${col }" type="text">-->
+<!--				<input type="button" value="确认" id="create">-->
+<!--				<br /> <br />-->
+			</div>
+<!--			</form>-->
+			<div class="right">
+				<div class="right child">
+					<button type="button"  id="btn_inputA"><p align="center">导入矩阵A</p></button>
+				</div>
+				<div class="right child">
+					<a href="#"><p align="center">导入矩阵B</p></a>
+				</div>
+				<div class="right child">
+					<a href="#"><p align="center">矩阵转置</p></a>
+				</div>
+				<div class="right child">
+					<a href="#"><p align="center">矩阵加法</p></a>
+				</div>
+				<div class="right child">
+					<a href="#"><p align="center">矩阵乘法</p></a>
+				</div>
+				<div class="right child">
+					<a href="#"><p align="center">求逆矩阵</p></a>
+				</div>
+				<div class="right child">
+					<a href="#"><p align="center">矩阵的特征值</p></a>
+				</div>
+				<div class="right child">
+					<a href="#"><p align="center">判断矩阵相似</p></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

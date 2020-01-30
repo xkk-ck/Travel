@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:07 +0800] "GET /travel HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:07 +0800] "GET /travel/header.html HTTP/1.1" 304 - http-bio-8080-exec-2 29
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:08 +0800] "GET /travel/findUserServlet HTTP/1.1" 200 4 http-bio-8080-exec-3 157
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:09 +0800] "GET /travel/tab.html HTTP/1.1" 304 - http-bio-8080-exec-4 11
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:09 +0800] "GET /travel/css/jquery-ui.css HTTP/1.1" 304 - http-bio-8080-exec-5 15
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:09 +0800] "GET /travel/js/jquery-1.12.4.js HTTP/1.1" 304 - http-bio-8080-exec-6 87
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:09 +0800] "GET /travel/js/jquery-ui.js HTTP/1.1" 304 - http-bio-8080-exec-7 139
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:11 +0800] "GET /travel/computingequipment.html HTTP/1.1" 200 2507 http-bio-8080-exec-10 12
+0:0:0:0:0:0:0:1 - - [28/Jan/2020:16:54:11 +0800] "GET /travel/css/ang.css HTTP/1.1" 304 - http-bio-8080-exec-10 6
