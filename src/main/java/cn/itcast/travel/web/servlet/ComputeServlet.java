@@ -21,12 +21,11 @@ public class ComputeServlet extends HttpServlet {
 //        1.获取用二维数组
 //        System.out.println(">>>>>>>>>>>--");
         Map<String,String[]> map = request.getParameterMap();
-//        Object map = request.getParameter("username");
+        String row = request.getParameter("row");
+        System.out.println("row:"+row);
+        String col = request.getParameter("col");
+        
 //        2.封装Matrix对象
-        System.out.println(map.size()+"-------------------------------");
-        System.out.println("row"+map.get("row")[0]+">>>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println("col"+map.get("col")+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println("Data"+map.get("Data")+"-------------------------");
         Matrix matrix = new Matrix();
         try {
             BeanUtils.populate(matrix,map);
