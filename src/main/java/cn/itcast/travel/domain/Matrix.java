@@ -1,5 +1,7 @@
 package cn.itcast.travel.domain;
 
+import java.util.Arrays;
+
 public class Matrix {
 
     private int row;
@@ -40,6 +42,14 @@ public class Matrix {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "Matrix{" +
+                "row=" + row +
+                ", col=" + col +
+                ", value=" + Arrays.toString(value) +
+                '}';
+    }
 }
 
 

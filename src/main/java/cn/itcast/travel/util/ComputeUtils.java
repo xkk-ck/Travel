@@ -34,15 +34,16 @@ public class ComputeUtils {
         int vaLenth = value.length();//字符串长度
         for (int i = 0; i < vaLenth; i++) {  //遍历字符串
             char chara = value.charAt(i);
-            if (chara!='['&&chara!=']'){
+            if (chara!='['&&chara!=']'&&(chara!=','||chara!='，')){
                 sums[rows][cols] = Double.parseDouble(chara+"");
                 cols++;
             }
-            if (chara==']'&&i!=vaLenth-1)
+            if (chara==']'&&i!=vaLenth-1) {
                 rows++;
-            continue;
+                cols=0;
+            }
         }
-      return sums;
+        return sums;
     }
 
 
