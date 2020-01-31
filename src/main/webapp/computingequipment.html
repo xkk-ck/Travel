@@ -9,30 +9,49 @@
 		<script src="js/jquery-3.3.1.js"></script>
 		<script>
 
-			$(function () {
-				//1.给登录按钮绑定单击事件
-				$("#btn_inputA").click(function () {
+			// $(function () {
+			// 	//1.给登录按钮绑定单击事件
+			// 	$("#btn_inputA").click(function () {
+			//
+			// 		//2.发送ajax请求，提交表单数据
+			// 		$.post("computeServlet",$("#MatrixForm").serialize(),function (data) {
+			// 			//data : {flag:false,errorMsg:''}
+			// 			if(data.flag!=null){
+			// 				//保存失败
+			// 				$("#errorMsg").html(data.errorMsg);
+			// 			}
+			// 		});
+			// 	});
+			// 	$("#btn_inputB").click(function () {
+			// 		//2.发送ajax请求，提交表单数据
+			// 		$.post("computeServlet",$("#B").serialize(),function (data) {
+			// 			//data : {flag:false,errorMsg:''}
+			// 			if(!data.flag){
+			// 				//保存失败
+			// 				$("#errorMsg").html(data.errorMsg);
+			// 			}
+			// 		});
+			// 	});
+			// });
 
-					//2.发送ajax请求，提交表单数据
-					$.post("computeServlet",$("#MatrixForm").serialize(),function (data) {
-						//data : {flag:false,errorMsg:''}
-						if(data.flag!=null){
-							//保存失败
-							$("#errorMsg").html(data.errorMsg);
-						}
-					});
+
+
+
+			 function btnacl() {
+				 var datas={
+					 row:$("#row").val(),
+					 col:$("#col").val(),
+					 Date:$("#Data").val()
+				 };
+			 	console.log(datas);
+			 	$.ajax({
+					type:"get",
+					url:"computeServlet",
+					async:true,
+					data:datas
+
 				});
-				$("#btn_inputB").click(function () {
-					//2.发送ajax请求，提交表单数据
-					$.post("computeServlet",$("#B").serialize(),function (data) {
-						//data : {flag:false,errorMsg:''}
-						if(!data.flag){
-							//保存失败
-							$("#errorMsg").html(data.errorMsg);
-						}
-					});
-				});
-			});
+			}
 
 
 			//3.处理响应结果
@@ -53,13 +72,13 @@
 
 			<div class="left foot">
 				<b>标题</b><div class="threadlike"></div>
-				<form id="MatrixForm" action="" method="post" accept-charset="utf-8">
+				<form id="MatrixForm" name="MatrixForm" action="" method="post" accept-charset="utf-8">
 					输入矩阵的行与列：
 					<input style="height:30px; width:30px" id="row" name="row"  type="text">
 					<input style="height:30px; width:30px" id="col" name="col"  type="text">
 					<br /> <br />
 					<div class="leftChild2" style="border: 0px;"><a>矩阵A</a></div>
-					<div class="leftChild2" style="height: 200px;"><textarea name="Data" class="form-control" type= "text" rows="14"></textarea></div>
+					<div class="leftChild2" style="height: 200px;"><textarea name="Data"  id="Data" class="form-control" type= "text" rows="14"></textarea></div>
 				</form>
 				<form id="MatrixForm2" action="" method="post" accept-charset="utf-8">
 					<br /> <br />
@@ -78,7 +97,7 @@
 <!--			</form>-->
 			<div class="right">
 				<div class="right child">
-					<button type="button"  id="btn_inputA"><p align="center">导入矩阵A</p></button>
+					<button type="button"  id="btn_inputA" onclick="btnacl()">导入矩阵A</button>
 				</div>
 				<div class="right child">
 					<a href="#"><p align="center">导入矩阵B</p></a>

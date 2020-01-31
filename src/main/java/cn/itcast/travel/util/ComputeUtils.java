@@ -26,4 +26,24 @@ public class ComputeUtils {
         matrix.setValue(data);
         return matrix;
     }
+
+    public static double[][] getArray(String row, String col,String value){
+        double[][] sums = new double[Integer.parseInt(row)][Integer.parseInt(col)];//要保证row col非空
+        int rows = 0; //行
+        int cols = 0; //列
+        int vaLenth = value.length();//字符串长度
+        for (int i = 0; i < vaLenth; i++) {  //遍历字符串
+            char chara = value.charAt(i);
+            if (chara!='['&&chara!=']'){
+                sums[rows][cols] = Double.parseDouble(chara+"");
+                cols++;
+            }
+            if (chara==']'&&i!=vaLenth-1)
+                rows++;
+            continue;
+        }
+      return sums;
+    }
+
+
 }

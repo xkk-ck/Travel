@@ -6,11 +6,11 @@ public class Matrix {
     private int col;
     private double value[][];
 
-    public Matrix(int row,int col) {
+    public Matrix(int row,int col,double[][] value) {
         this.row = row;
         this.col = col;
-        value = new double[row][col];
-    }
+        this.value = value;
+}
     public Matrix(){
 
     }
