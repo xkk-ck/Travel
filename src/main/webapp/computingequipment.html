@@ -52,6 +52,75 @@
 
 				});
 			}
+			function btnac2() {
+				var datas={
+					row:$("#row").val(),
+					col:$("#col").val(),
+					Date:$("#Data2").val()
+				};
+				console.log(datas);
+				$.ajax({
+					type:"get",
+					url:"computeServlet",
+					async:true,
+					data:datas
+
+				});
+			}
+			function btnac3() {
+				var datas={
+					row:$("#row").val(),
+					col:$("#col").val(),
+					Date:$("#Data").val(),
+					Date2:$("#Data2").val()
+				};
+				console.log(datas);
+				$.ajax({
+					type:"get",
+					url:"computeServlet/matrixAdd",
+					async:true,
+					data:datas,
+					success:function(data){
+						if (data.flag) {
+							// 相加成功，在结果框打印出矩阵
+							 matrix = data.matrix
+							$("#Result").html(matrix.toString());
+						}else {
+							//相加失败，给出提示
+							$("#span_username").html(data.errorMsg);
+						}
+
+					}
+
+				});
+			}
+			function btnac4() {
+				var datas={
+					row:$("#row").val(),
+					col:$("#col").val(),
+					Date:$("#Data").val(),
+					Date2:$("#Data2").val()
+				};
+				console.log(datas);
+				$.ajax({
+					type:"get",
+					url:"computeServlet",
+					async:true,
+					data:datas,
+					success:function(data){
+						if (data.flag) {
+							// 相乘成功，在结果框打印出矩阵
+							matrix = data.matrix
+							$("#Result").html(matrix.toString());
+						}else {
+							//相乘成功，给出提示
+							$("#span_username").html(data.errorMsg);
+						}
+
+					}
+
+				});
+			}
 
 
 			//3.处理响应结果
@@ -82,11 +151,11 @@
 				</form>
 				<form id="MatrixForm2" action="" method="post" accept-charset="utf-8">
 					<br /> <br />
-					<div class="rightChild1"><textarea class="form-control" rows="29"></textarea></div>
-
-					<div class="leftChild2" style="border: 0px;"><a>矩阵</a></div>
-					<div class="leftChild2" style="height: 200px;"><textarea ID="B" class="form-control" type= "text" rows="14" ></textarea></div>
+					<div class="leftChild2" style="border: 0px;"><a>矩阵B</a></div>
+					<div class="leftChild2" style="height: 200px;"><textarea name="Data2"  id="Data2" class="form-control" type= "text" rows="14"></textarea></div>
 				</form>
+
+				<div class="rightChild1"><textarea  name="Result" id="Result" class="form-control" rows="29"></textarea></div>
 
 <!--				输入矩阵的行与列：-->
 <!--				<input style="height:30px; width:30px" id="row" name="row" value="${row }" type="text">-->
@@ -100,16 +169,16 @@
 					<button type="button"  id="btn_inputA" onclick="btnacl()">导入矩阵A</button>
 				</div>
 				<div class="right child">
-					<a href="#"><p align="center">导入矩阵B</p></a>
+					<button type="button"  id="btn_inputB" onclick="btnac2()">导入矩阵A</button>
 				</div>
 				<div class="right child">
 					<a href="#"><p align="center">矩阵转置</p></a>
 				</div>
 				<div class="right child">
-					<a href="#"><p align="center">矩阵加法</p></a>
+					<button type="button"  id="matrixAdd" onclick="btnac3()">矩阵加法</button>
 				</div>
 				<div class="right child">
-					<a href="#"><p align="center">矩阵乘法</p></a>
+					<button type="button"  id="matrixMultiply" onclick="btnac4()">矩阵乘法</button>
 				</div>
 				<div class="right child">
 					<a href="#"><p align="center">求逆矩阵</p></a>
