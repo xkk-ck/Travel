@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>线代</title>
+		<link rel="stylesheet" type="text/css" href="css/ang.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+		<!--导入jquery-->
+		<script src="js/jquery-3.3.1.js"></script>
+		<script>
+
+            function btnac1() {
+                var datas={
+                    row:$("#row").val(),
+                    col:$("#col").val(),
+                    Date:$("#Data").val(),
+					Date2:$("#Data2").val()
+                };
+                console.log(datas);
+                $.ajax({
+                    type:"get",
+                    url:"computeServlet/isCorrelate",
+                    async:true,
+                    data:datas,
+                    success:function(data){
+                        if (data.flag) {
+                            // 求出矩阵的秩，在结果框打印出矩阵
+
+                            var result =data.data;
+                            $("#Result").html(result);
+                        }else {
+                            //失败，给出提示
+                            $("#errorMsg").html("data.errorMsg");
+                        }
+                    },
+
+                });
+            }
+
+
+
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="left top">
+				<b>标题</b><div class="threadlike">	</div>
+				<p>具体事项</p>
+				<div id="errorMsg" class="alert alert-danger" ></div>
+			</div>
+
+<!--			<form id="Matrix" action="" method="post" accept-charset="utf-8">-->
+
+			<div class="left foot">
+				<b>标题</b><div class="threadlike"></div>
+				<form id="MatrixForm" name="MatrixForm" action="" method="post" accept-charset="utf-8">
+					输入矩阵的行与列：
+					<input style="height:30px; width:30px" id="row" name="row"  type="text">
+					<input style="height:30px; width:30px" id="col" name="col"  type="text">
+					<br /> <br />
+					<div class="leftChild2" style="border: 0px;"><a>矩阵A</a></div>
+					<div class="leftChild2" style="height: 200px;"><textarea name="Data"  id="Data" class="form-control" type= "text" rows="14"></textarea></div>
+				</form>
+				<form id="MatrixForm2" action="" method="post" accept-charset="utf-8">
+					<br /> <br />
+					<div class="leftChild2" style="border: 0px;"><a>矩阵B</a></div>
+					<div class="leftChild2" style="height: 200px;"><textarea name="Data2"  id="Data2" class="form-control" type= "text" rows="14"></textarea></div>
+				</form>
+
+				<div class="rightChild1"><textarea  name="Result" id="Result" class="form-control" rows="29"></textarea></div>
+
+<!--				输入矩阵的行与列：-->
+<!--				<input style="height:30px; width:30px" id="row" name="row" value="${row }" type="text">-->
+<!--				<input style="height:30px; width:30px" id="col" name="col" value="${col }" type="text">-->
+<!--				<input type="button" value="确认" id="create">-->
+<!--				<br /> <br />-->
+			</div>
+<!--			</form>-->
+			<div class="right">
+                <div class="right child">
+                    <button type="button"  id="isCorrelate" onclick="btnac1()">线性相关判断</button>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>

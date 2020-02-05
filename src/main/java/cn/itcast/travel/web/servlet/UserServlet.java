@@ -9,12 +9,12 @@ import java.io.IOException;
 
 @WebServlet("/user/*")
 public class UserServlet extends BaseServlet {
-    protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("userServlrt的add方法。。。");
 
     }
 
-    protected void find(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void find(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("userServlrt的find方法。。。");
     }
 }

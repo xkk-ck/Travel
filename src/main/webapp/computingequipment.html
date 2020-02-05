@@ -35,38 +35,6 @@
 			// });
 
 
-
-
-			 function btnacl() {
-				 var datas={
-					 row:$("#row").val(),
-					 col:$("#col").val(),
-					 Date:$("#Data").val()
-				 };
-			 	console.log(datas);
-			 	$.ajax({
-					type:"get",
-					url:"computeServlet",
-					async:true,
-					data:datas
-
-				});
-			}
-			function btnac2() {
-				var datas={
-					row:$("#row").val(),
-					col:$("#col").val(),
-					Date:$("#Data2").val()
-				};
-				console.log(datas);
-				$.ajax({
-					type:"get",
-					url:"computeServlet",
-					async:true,
-					data:datas
-
-				});
-			}
 			function btnac3() {
 				var datas={
 					row:$("#row").val(),
@@ -83,14 +51,17 @@
 					success:function(data){
 						if (data.flag) {
 							// 相加成功，在结果框打印出矩阵
-							 matrix = data.matrix
-							$("#Result").html(matrix.toString());
+
+                           var matrix =data.data;
+                            $("#Result").html(matrix.value);
 						}else {
 							//相加失败，给出提示
-							$("#span_username").html(data.errorMsg);
+                            $("#errorMsg").html(data.errorMsg);
 						}
-
-					}
+					},
+                    error:function(data){
+					    console.log("出错了");
+                    }
 
 				});
 			}
@@ -104,26 +75,103 @@
 				console.log(datas);
 				$.ajax({
 					type:"get",
-					url:"computeServlet",
+					url:"computeServlet/matrixMultiply",
 					async:true,
 					data:datas,
 					success:function(data){
 						if (data.flag) {
 							// 相乘成功，在结果框打印出矩阵
-							matrix = data.matrix
-							$("#Result").html(matrix.toString());
-						}else {
-							//相乘成功，给出提示
-							$("#span_username").html(data.errorMsg);
+                            var matrix =data.data;
+                            $("#Result").html(matrix.value);
+                        }else {
+                            //相加失败，给出提示
+                            $("#errorMsg").html(data.errorMsg);
 						}
 
 					}
 
 				});
 			}
+            function btnac5() {
+                var datas={
+                    row:$("#row").val(),
+                    col:$("#col").val(),
+                    Date:$("#Data").val(),
+                };
+                console.log(datas);
+                $.ajax({
+                    type:"get",
+                    url:"computeServlet/matrixTranspose",
+                    async:true,
+                    data:datas,
+                    success:function(data){
+                        if (data.flag) {
+                            // 求出逆矩阵，在结果框打印出矩阵
 
+                            var matrix =data.data;
+                            $("#Result").html(matrix.value);
+                        }else {
+                            //相加失败，给出提示
+                            $("#errorMsg").html(data.errorMsg);
+                        }
+                    },
 
-			//3.处理响应结果
+                });
+            }
+
+            function btnac6() {
+                var datas={
+                    row:$("#row").val(),
+                    col:$("#col").val(),
+                    Date:$("#Data").val(),
+                };
+                console.log(datas);
+                $.ajax({
+                    type:"get",
+                    url:"computeServlet/matrixInverse",
+                    async:true,
+                    data:datas,
+                    success:function(data){
+                        if (data.flag) {
+                            // 求出逆矩阵，在结果框打印出矩阵
+
+                            var matrix =data.data;
+                            $("#Result").html(matrix.value);
+                        }else {
+                            //相加失败，给出提示
+                            $("#errorMsg").html(data.errorMsg);
+                        }
+                    },
+
+                });
+            }
+
+            function btnac7() {
+                var datas={
+                    row:$("#row").val(),
+                    col:$("#col").val(),
+                    Date:$("#Data").val(),
+                };
+                console.log(datas);
+                $.ajax({
+                    type:"get",
+                    url:"computeServlet/matrixRank",
+                    async:true,
+                    data:datas,
+                    success:function(data){
+                        if (data.flag) {
+                            // 求出矩阵的秩，在结果框打印出矩阵
+
+                            var rank =data.data;
+                            $("#Result").html(rank);
+                        }else {
+                            //失败，给出提示
+                            $("#errorMsg").html(data.errorMsg);
+                        }
+                    },
+
+                });
+            }
 
 
 
@@ -165,15 +213,9 @@
 			</div>
 <!--			</form>-->
 			<div class="right">
-				<div class="right child">
-					<button type="button"  id="btn_inputA" onclick="btnacl()">导入矩阵A</button>
-				</div>
-				<div class="right child">
-					<button type="button"  id="btn_inputB" onclick="btnac2()">导入矩阵A</button>
-				</div>
-				<div class="right child">
-					<a href="#"><p align="center">矩阵转置</p></a>
-				</div>
+                <div class="right child">
+                    <button type="button"  id="matrixTranspose" onclick="btnac5()">矩阵转置</button>
+                </div>
 				<div class="right child">
 					<button type="button"  id="matrixAdd" onclick="btnac3()">矩阵加法</button>
 				</div>
@@ -181,13 +223,16 @@
 					<button type="button"  id="matrixMultiply" onclick="btnac4()">矩阵乘法</button>
 				</div>
 				<div class="right child">
-					<a href="#"><p align="center">求逆矩阵</p></a>
+                    <button type="button"  id="matrixInverse" onclick="btnac6()">求逆矩阵</button>
 				</div>
 				<div class="right child">
-					<a href="#"><p align="center">矩阵的特征值</p></a>
+                    <button type="button"  id="matrixRank" onclick="btnac7()">求矩阵的秩</button>
 				</div>
 				<div class="right child">
-					<a href="#"><p align="center">判断矩阵相似</p></a>
+					<button type="button"  id="btn_inputA" onclick="btnacl()">矩阵特征值</button>
+				</div>
+				<div class="right child">
+					<button type="button"  id="btn_inputB" onclick="btnac2()">判断矩阵是否相似</button>
 				</div>
 			</div>
 		</div>

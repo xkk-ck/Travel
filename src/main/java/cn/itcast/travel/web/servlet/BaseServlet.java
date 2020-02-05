@@ -15,16 +15,14 @@ public class BaseServlet extends HttpServlet {
 //    完成方法分发
 //    1.获取请求路径
         String uri = req.getRequestURI();
-        System.out.println("请求URi"+uri);
 //    2.获取方法名称
         String methodName = uri.substring(uri.lastIndexOf('/') + 1);
-        System.out.println("方法名称"+methodName);
 //    3.获取方法对象的method
         try {
-            Method method = this.getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+            Method method = this.getClass().getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
 //    4.执行方法
 //            暴力反射
-            method.setAccessible(true);
+//            method.setAccessible(true);
             method.invoke(this,req,resp);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
