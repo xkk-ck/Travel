@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/pintuer.css">
+<!--<script src="js/bootstrap.min(2).js"></script>-->
+<!--<script src="js/jquery-3.2.1.min.js"></script>-->
+
+<!--导入jquery-->
+<script src="js/jquery-3.3.1.js"></script>
+
+	<script>
+		/*
+            表单校验：
+              1.标题：非空
+              2.内容：非空
+         */
+
+
+		function checkTitle() {
+			//1.获取用户名值
+			var title = $("#title").val();
+			//3.判断，给出提示信息
+			if(title){
+				//用户名合法
+				$("#title").css("border","");
+			}else{
+				//用户名非法,加一个红色边框
+				$("#title").css("border","1px solid red");
+			}
+
+			return title;
+		}
+
+		//校验密码
+		function checkContent() {
+			//1.获取密码值
+			var content = $("#content").val();
+			//3.判断，给出提示信息
+			if(content){
+				//密码合法
+				$("#content").css("border","");
+			}else{
+				//密码非法,加一个红色边框
+				$("#content").css("border","1px solid red");
+			}
+
+			return content;
+		}
+
+		$(function () {
+			//当表单提交时，调用所有的校验方法
+			$("#postForm").submit(function() {
+						//1.发送数据到服务器
+						if (checkTitle() && checkContent()) {
+							//校验通过,发送ajax请求，提交表单的数据
+
+							$.post("questionServlet/post", $(this).serialize(), function (data) {
+								//处理服务器响应的数据  data  {flag:true,errorMsg:"注册失败"}
+
+								if (data.flag) {
+									//注册成功，跳转成功页面
+									location.href = "post_list.html";
+								} else {
+									//注册失败,给errorMsg添加提示信息
+									$("#errorMsg").html(data.errorMsg+'<a href="login.html">登录</a>');
+								}
+							});
+
+						}
+				//2.不让页面跳转
+				return false;
+				//如果这个方法没有返回值，或者返回为true，则表单提交，如果返回为false，则表单不提交
+			});
+
+			//当某一个组件失去焦点是，调用对应的校验方法
+			$("#title").blur(checkTitle());
+			$("#content").blur(checkContent());
+
+		});
+
+	</script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-user"></span>提问</strong></div>
+  <div class="body-content">
+    <form id="postForm" >
+	  <div class="form-group">
+	    <label for="title">标题：</label>
+	    <input type="text" name="title" class="form-control" id="title" placeholder="标题">
+	  </div>
+	   <div class="form-group">
+	    <label for="content">具体问题：</label>
+	    <textarea class="form-control" rows="6" name="content" id="content" placeholder="具体问题"></textarea>
+	  </div>
+	  <div class="form-group">
+
+	  </div>
+	  <button type="submit" class="btn btn-default btn-lg">Submit</button>
+	  <div>
+	  	&nbsp;
+	  	&nbsp;<div id="errorMsg" class="alert alert-danger" ></div>
+	  	&nbsp;
+	  </div>
+	</form>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="utf-8">
+		<title>文件上传</title>
+		<link rel="stylesheet" type="text/css" href="css/ang.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+
+		<!--导入jquery-->
+		<script src="js/jquery-3.3.1.js"></script>
+		<script>
+
+		</script>
+	</head>
+	<body>
+		<div class="main">
+
+<!--			<form id="Matrix" action="" method="post" accept-charset="utf-8">-->
+
+			<div class="left foot">
+				<b>标题</b><div class="threadlike"></div>
+				<br/>
+				<br/>
+				<!--表单的enctype属性要设置为multipart/form-data-->
+				<form action="arithmeticServlet" method="post" enctype="multipart/form-data">
+					<table width="600">
+						<tr>
+							<td>上传者</td>
+							<td><input type="text" name="name"/></td>
+						</tr>
+						<tr>
+							<td>上传文件</td>
+							<td><input type="file" name="myfile"/></td>
+						</tr>
+						<tr>
+							<!--设置单元格可横跨的列数。-->
+							<td colspan="2"><input type="submit" value="上传"/></td>
+						</tr>
+					</table>
+
+				</form>
+
+<!--				输入矩阵的行与列：-->
+<!--				<input style="height:30px; width:30px" id="row" name="row" value="${row }" type="text">-->
+<!--				<input style="height:30px; width:30px" id="col" name="col" value="${col }" type="text">-->
+<!--				<input type="button" value="确认" id="create">-->
+<!--				<br /> <br />-->
+			</div>
+<!--			</form>-->
+			<div class="right">
+				<td>下载文件</td>
+
+				<a href="/travel/downloadServlet?filename=3d97f533-8426-4f32-8ac5-d2914a7c4d91_tom.txt">算法一</a>
+				<a href="/travel/downloadServlet?filename=9d31fea9-f4a5-4931-93fe-e8b9b6e77ff6_tom.txt">算法二</a>
+				<a href="/travel/downloadServlet?filename=b0554898-9144-42f2-aa6f-64379981788d_tom.txt">算法三</a>
+			</div>
+		</div>
+	</body>
+</html>
