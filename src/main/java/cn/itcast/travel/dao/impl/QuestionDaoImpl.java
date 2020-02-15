@@ -43,4 +43,11 @@ public class QuestionDaoImpl implements QuestionDao {
         String sql = "select count(*) from tab_question";
         return template.queryForObject(sql ,Integer.class );
     }
+
+    @Override
+    public Question findOne(int id) {
+        String sql = "select * from tab_question where id = ?";
+        return template.queryForObject(sql ,new BeanPropertyRowMapper<Question>(Question.class),id );
+    }
+
 }

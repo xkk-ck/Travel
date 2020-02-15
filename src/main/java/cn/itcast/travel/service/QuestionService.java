@@ -14,4 +14,6 @@ public interface QuestionService {
     //删除问题
     public void delect(Question question);
 
+//    根据id查询
+    public Question findOne(String id);
 }

@@ -1,10 +1,9 @@
 package cn.itcast.travel.web.servlet;
 
-import cn.itcast.travel.domain.PageBean;
-import cn.itcast.travel.domain.Question;
-import cn.itcast.travel.domain.ResultInfo;
-import cn.itcast.travel.domain.User;
+import cn.itcast.travel.domain.*;
+import cn.itcast.travel.service.AnswerService;
 import cn.itcast.travel.service.QuestionService;
+import cn.itcast.travel.service.impl.AnswerServiceImpl;
 import cn.itcast.travel.service.impl.QuestionServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -102,5 +101,69 @@ public class QuestionServlet extends BaseServlet {
         writeValue(pb,response);
 
     }
+
+    /**
+     * 查询问题帖子
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void findOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //1.接收id
+        String id = request.getParameter("id");
+        //2.调用service查询post
+        Question q = service.findOne(id);
+        //3转为json写回客户端
+        writeValue(q,response);
+
+    }
+
+    public void reply(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //        从session中获取用户名
+        HttpSession session = request.getSession();
+        User u = (User)session.getAttribute("user");
+
+        ResultInfo info = new ResultInfo();
+//        比较
+        if (u == null){
+//        验证码错误
+//            注册失败
+            info.setFlag(false);
+            info.setErrorMsg("还未登录，您请登录后再操作");
+
+        }else{
+            //       1.获取数据
+            Map<String,String[]> map = request.getParameterMap();
+            String reply = request.getParameter("reply");
+            String qid = request.getParameter("qid");
+            String username = u.getUsername();
+//       2.封装对象
+            Answer answer = new Answer();
+            answer.setUsername(username);
+            answer.setContent(reply);
+            answer.setQid(Integer.parseInt(qid));
+            //        设置时间
+            String datestyle="yyyy-MM-dd HH:mm:ss";
+            SimpleDateFormat format=new SimpleDateFormat(datestyle);
+            Date time=new Date();
+            String nowtime=format.format(time);
+            answer.setTime(nowtime);
+
+//       3.调用service完成提问
+             AnswerService answerService = new AnswerServiceImpl();
+            answerService.post(answer);
+//            注册成功
+            info.setFlag(true);
+            info.setErrorMsg("回答成功");
+        }
+//        将info对象序列化
+//        将JSON数据写回客户端，设置content-type
+
+        writeValue(info,response);
+
+
+    }
+
         }
 

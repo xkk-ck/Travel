@@ -1,22 +1,18 @@
 package cn.itcast.travel.domain;
 
-import java.util.List;
-
-public class Question {
+public class Answer {
     private int id;
+    private int qid; 
     private String username;
-    private String title;
     private String content;
     private String time;
 
-    private List<Answer> answerList;
+    public Answer(){ }
 
-    public Question(){}
-
-    public Question(int id, String username, String title, String content, String time) {
+    public Answer(int id, int qid, String username, String content, String time) {
         this.id = id;
+        this.qid = qid;
         this.username = username;
-        this.title = title;
         this.content = content;
         this.time = time;
     }
@@ -29,20 +25,20 @@ public class Question {
         this.id = id;
     }
 
+    public int getQid() {
+        return qid;
+    }
+
+    public void setQid(int qid) {
+        this.qid = qid;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
@@ -61,20 +57,12 @@ public class Question {
         this.time = time;
     }
 
-    public List<Answer> getAnswerList() {
-        return answerList;
-    }
-
-    public void setAnswerList(List<Answer> answerList) {
-        this.answerList = answerList;
-    }
-
     @Override
     public String toString() {
-        return "Question{" +
-                "id='" + id + '\'' +
+        return "Answer{" +
+                "id=" + id +
+                ", qid=" + qid +
                 ", username='" + username + '\'' +
-                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", time='" + time + '\'' +
                 '}';

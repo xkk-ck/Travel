@@ -16,4 +16,5 @@ public interface QuestionDao {
 
     public int findTotalCount();
 
+    public Question findOne(int id);
 }
