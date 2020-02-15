@@ -6,6 +6,8 @@ import cn.itcast.travel.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 public class UserDaoImpl implements UserDao {
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
     @Override
@@ -80,5 +82,24 @@ public class UserDaoImpl implements UserDao {
 
         }
         return user;
+    }
+
+    @Override
+    public List<User> findByPage(int start, int pageSize) {
+        String sql = "select * from tab_user limit ? ,?";
+        return template.query(sql,new BeanPropertyRowMapper<User>(User.class),start,pageSize);
+    }
+
+    @Override
+    public int findTotalCount() {
+        String sql = "select count(*) from tab_user";
+        return template.queryForObject(sql ,Integer.class );
+    }
+
+    @Override
+    public void frozenUser(int uid) {
+        String sql = "update tab_user set status ='N' where uid = ?";
+        template.update(sql,uid);
+
     }
 }

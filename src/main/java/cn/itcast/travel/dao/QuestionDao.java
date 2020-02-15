@@ -17,4 +17,6 @@ public interface QuestionDao {
     public int findTotalCount();
 
     public Question findOne(int id);
+
+    void delectquestion(int id);
 }

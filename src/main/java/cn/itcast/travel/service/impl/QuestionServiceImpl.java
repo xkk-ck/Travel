@@ -32,8 +32,8 @@ private AnswerDao answerDao = new AnswerDaoImpl();
         int totalCount = questionDao.findTotalCount();
         pb.setTotalCount(totalCount);
         //设置当前页显示的数据集合
-        int star = (currentPage-1) * pageSize;//开始的记录数
-        List<Question> list = questionDao.findByPage( star, pageSize);
+        int start = (currentPage-1) * pageSize;//开始的记录数
+        List<Question> list = questionDao.findByPage( start, pageSize);
         pb.setList(list);
 
         //设置总页数=总记录数/每页显示条数

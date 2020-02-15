@@ -9,6 +9,7 @@ cn\itcast\travel\service\impl\ComputeServiceImpl.class
 cn\itcast\travel\test\activeTest.class
 cn\itcast\travel\domain\Category.class
 cn\itcast\travel\service\impl\CategoryServiceImpl.class
+cn\itcast\travel\service\impl\AdminServiceImpl.class
 cn\itcast\travel\web\servlet\ActiveUserServlet.class
 cn\itcast\travel\web\servlet\RouteServlet.class
 cn\itcast\travel\domain\PageBean.class
@@ -19,10 +20,13 @@ cn\itcast\travel\web\servlet\DownloadServlet.class
 cn\itcast\travel\dao\impl\CategoryDaoImpl.class
 cn\itcast\travel\service\CategoryService.class
 cn\itcast\travel\domain\User.class
+cn\itcast\travel\test\questionserviceTest.class
 cn\itcast\travel\domain\Favorite.class
+cn\itcast\travel\web\servlet\AdminServlet.class
 cn\itcast\travel\util\JDBCUtils.class
 cn\itcast\travel\util\Md5Util.class
 cn\itcast\travel\web\servlet\LoginServlet.class
+cn\itcast\travel\dao\AdminDao.class
 cn\itcast\travel\util\MailUtils.class
 cn\itcast\travel\dao\CategoryDao.class
 cn\itcast\travel\util\JedisUtil.class
@@ -33,6 +37,7 @@ cn\itcast\travel\service\impl\RouteServiceImpl.class
 cn\itcast\travel\dao\impl\AnswerDaoImpl.class
 cn\itcast\travel\web\servlet\ArithmeticServlet.class
 cn\itcast\travel\dao\QuestionDao.class
+cn\itcast\travel\service\impl\QuestionServiceImpl.class
 cn\itcast\travel\web\servlet\FindUserServlet.class
 cn\itcast\travel\domain\Answer.class
 cn\itcast\travel\web\servlet\UserServlet.class
@@ -40,12 +45,16 @@ cn\itcast\travel\web\servlet\CheckCodeServlet.class
 cn\itcast\travel\service\impl\AnswerServiceImpl.class
 cn\itcast\travel\domain\RouteImg.class
 cn\itcast\travel\web\servlet\ComputeServlet.class
+cn\itcast\travel\dao\impl\AdminDaoImpl.class
 cn\itcast\travel\web\servlet\RegistUserServlet.class
 cn\itcast\travel\test\getArryTest.class
 cn\itcast\travel\domain\Matrix.class
 cn\itcast\travel\domain\ResultInfo.class
+cn\itcast\travel\service\QuestionService.class
 cn\itcast\travel\domain\Route.class
+cn\itcast\travel\domain\Admin.class
 cn\itcast\travel\service\impl\UserServiceImpl.class
+cn\itcast\travel\service\AdminService.class
 cn\itcast\travel\dao\impl\QuestionDaoImpl.class
 cn\itcast\travel\web\servlet\DeterminantServlet.class
 cn\itcast\travel\dao\AnswerDao.class

@@ -25,11 +25,11 @@
             //1.给登录按钮绑定单击事件
 			$("#btn_sub").click(function () {
                 //2.发送ajax请求，提交表单数据
-				$.post("loginServlet",$("#loginForm").serialize(),function (data) {
+				$.post("/travel/adminServlet/login",$("#loginForm").serialize(),function (data) {
 					//data : {flag:false,errorMsg:''}
 					if(data.flag){
 					    //登录成功
-						location.href="index.html";
+						location.href="user_list.html";
 					}else{
 					    //登录失败
 						$("#errorMsg").html(data.errorMsg);
@@ -57,7 +57,7 @@
         <div class="login-box">
         	<div class="title">
 <!--        		<img src="images/login_logo.png" alt="">-->
-        		<span>欢迎登录线代学习网账户</span>
+        		<span>欢迎登录管理员账户</span>
         	</div>
         	<div class="login_inner">
 				
@@ -68,20 +68,11 @@
 					<input name="username" type="text" placeholder="请输入账号" autocomplete="off">
         			<input name="password" type="text" placeholder="请输入密码" autocomplete="off">
         			<div class="verify">
-<!--					<input name="check" type="text" placeholder="请输入验证码" autocomplete="off">-->
-<!--					<span><img src="checkCode" alt="" onclick="changeCheckCode(this)"></span>-->
-<!--					<script type="text/javascript">-->
-<!--						//图片点击事件-->
-<!--						function changeCheckCode(img) {-->
-<!--							img.src="checkCode?"+new Date().getTime();-->
-<!--						}-->
-<!--					</script>-->
 			</div>
 			<div class="submit_btn">
         				<button type="button"  id="btn_sub">登录</button>
         				<div class="auto_login">
-<!--        					<input type="checkbox" name="" id="Administrators" class="checkbox">-->
-        					<span><a href="adminlogin.html">管理员登录</a></span>
+        					<span>管理员</span>
         				</div>        				
         			</div>        			       		
         		</form>

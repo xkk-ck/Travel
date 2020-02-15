@@ -50,4 +50,10 @@ public class QuestionDaoImpl implements QuestionDao {
         return template.queryForObject(sql ,new BeanPropertyRowMapper<Question>(Question.class),id );
     }
 
+    @Override
+    public void delectquestion(int id) {
+        String sql = "delete from tab_question where id=?";
+        template.update(sql,id);
+    }
+
 }

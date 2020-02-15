@@ -83,14 +83,18 @@
             $("#content").html(question.content);
             $("#time").html(question.time);
             $("#username").html(question.username);
-            console.log(question.answersList);
+
 
             //评论展示
             // 2列数据展示
             var answer_list = "";
-            for (var i= 0; i<question.answersList.length;i++){
+            // var list = question.answerList;
+            // console.log(list);
+            // console.log(typeof(list));
+
+            for (var i= 0; i<question.answerList.length;i++){
                 //获取{rid:1,rname:'xxx'}
-                var answer = question.answersList[i];
+                var answer = question.answerList[i];
                 var li =' <li>\n' +
                     '                            <div class="text1">\n' +
                     '                                <p>'+answer.username +'</p>\n' +
